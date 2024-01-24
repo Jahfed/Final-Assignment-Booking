@@ -1,8 +1,12 @@
-import users from "../../data/users.json" assert {type: "json"};
+
+import { PrismaClient } from "@prisma/client";
 
 const getUsersById = (id) => {
-    const { name, email, profilePicture } = users.users.find((user) => user.id === id);
-    return { name, email, profilePicture };
+    const prisma = new PrismaClient();
+
+    return prisma.user.findMany({
+        where: { id }
+    })
 }
 
 export default getUsersById;
