@@ -1,10 +1,10 @@
 import { PrismaClient } from "@prisma/client";
 
-const getHostsByQuery = (name, email, phoneNumberGiven, profilePicture, aboutMe) => {
+const getHostsByQuery = (id, name, email, phoneNumberGiven, profilePicture, aboutMe) => {
     const prisma = new PrismaClient();
 
     return prisma.host.findMany({
-        where: { name, email, phoneNumberGiven, profilePicture, aboutMe },
+        where: { id, name, email, phoneNumberGiven, profilePicture, aboutMe },
         select: {
             id: true,
             name: true,

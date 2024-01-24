@@ -16,8 +16,8 @@ const router = new express.Router();
 
 
 router.get('/', async (req, res) => {
-    const { userId, propertyId, rating, comment } = req.query;
-    const review = await getReviewsByQuery(userId, propertyId, rating, comment);
+    const { id, userId, propertyId, rating, comment } = req.query;
+    const review = await getReviewsByQuery(id, userId, propertyId, rating, comment);
     res.status(200).json(review);
 })
 
@@ -38,7 +38,7 @@ router.put('/:id', authMiddleware, async (req, res, next) => {
         const { id } = req.params;
         const { userId, propertyId, rating, comment } = req.body;
         const updatedReview = await updateReview(id, userId, propertyId, rating, comment);
-        res.status(201).json(updatedReview);
+        res.status(200).json(updatedReview);
     } catch (error) {
         next(error);
     }
@@ -48,7 +48,7 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
     try {
         const { id } = req.params;
         const deletedReview = await deleteReview(id);
-        res.status(201).json(deletedReview);
+        res.status(200).json(deletedReview);
     } catch (error) {
         next(error);
     }

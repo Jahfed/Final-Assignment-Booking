@@ -1,13 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 
 
-const getAmenityByType = async (type) => {
+const getAmenityByQuery = async (id, name) => {
 
     const prisma = new PrismaClient();
 
     return prisma.amenity.findMany({
-        where: { name: type }
+        where: { id, name }
     })
 }
 
-export default getAmenityByType;
+export default getAmenityByQuery;

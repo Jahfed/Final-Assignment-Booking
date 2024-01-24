@@ -17,7 +17,7 @@ const createNewHost = async (username, password, name, email, phoneNumber, profi
 
     //do a hash of the password
     const unhashed = password;
-    const hashed = await bcrypt.hash(unhashed, 10).then(async function (hashed) { return hashed; });
+    const hashed = await bcrypt.hash(unhashed, 10);
 
     const createdHost = await prisma.host.create({
         data: { username, password: hashed, name, email, phoneNumber, profilePicture, aboutMe }

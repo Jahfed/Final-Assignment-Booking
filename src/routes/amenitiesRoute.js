@@ -6,7 +6,7 @@ import notFoundErrorHandler from '../middleware/notFoundErrorHandler.js';
 
 //services import
 import getAmenityById from "../services/amenities/getAmenityById.js";
-import getAmenityByType from "../services/amenities/getAmenityByType.js";
+import getAmenityByQuery from "../services/amenities/getAmenityByQuery.js";
 import createNewAmenity from "../services/amenities/postNewAmenity.js";
 import updateAmenity from "../services/amenities/updateAmenity.js";
 import deleteAmenity from "../services/amenities/deleteAmenity.js";
@@ -20,8 +20,8 @@ const router = new express.Router();
 
 router.get('/', async (req, res, next) => {
     try {
-        const { type } = req.query;
-        const amenity = await getAmenityByType(type);
+        const { id, name } = req.query;
+        const amenity = await getAmenityByQuery(id, name);
         res.status(200).json(amenity);
     } catch (error) {
         next(error);

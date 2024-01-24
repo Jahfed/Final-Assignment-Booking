@@ -18,7 +18,6 @@ import reviewsRouter from "./routes/reviewsRoute.js";
 import usersRouter from "./routes/usersRoute.js";
 import loginRouter from "./routes/loginRoute.js";
 
-//Other Middleware
 
 
 //Start the express app

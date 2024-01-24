@@ -16,7 +16,8 @@ const createNewUser = async (username, password, name, email, phoneNumber, profi
     //optional: regex on username, name, email, phoneNumber, profileUrl
     //do a hash of the password
     const unhashed = password;
-    const hashed = await bcrypt.hash(unhashed, 10).then(async function (hashed) { return hashed; });
+    const hashed = await bcrypt.hash(unhashed, 10);
+
     const createdUser = await prisma.user.create({
         data: { username, password: hashed, name, email, phoneNumber, profilePicture }
     });

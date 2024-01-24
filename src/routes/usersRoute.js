@@ -14,8 +14,8 @@ import deleteUser from "../services/users/deleteUser.js";
 const router = new express.Router();
 
 router.get('/', async (req, res) => {
-    const { name, email, phoneNumber, profilePicture } = req.query;
-    const user = await getUsersByQuery(name, email, phoneNumber, profilePicture);
+    const { id, username, name, email, phoneNumber, profilePicture } = req.query;
+    const user = await getUsersByQuery(id, username, name, email, phoneNumber, profilePicture);
     res.status(200).json(user);
 })
 
@@ -36,7 +36,7 @@ router.put('/:id', authMiddleware, async (req, res, next) => {
         const { id } = req.params;
         const { username, password, name, email, phoneNumber, profilePicture } = req.body;
         const updatedUser = await updateUser(id, username, password, name, email, phoneNumber, profilePicture);
-        res.status(201).json(updatedUser);
+        res.status(200).json(updatedUser);
     } catch (error) {
         next(error);
     }
@@ -45,8 +45,10 @@ router.put('/:id', authMiddleware, async (req, res, next) => {
 router.delete('/:id', authMiddleware, async (req, res, next) => {
     try {
         const { id } = req.params;
+        console.log(id);
         const deletedUser = await deleteUser(id);
-        res.status(201).json(deletedUser);
+        console.log(deletedUser);
+        res.status(200).json(deletedUser);
     } catch (error) {
         next(error);
     }
@@ -56,3 +58,4 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
 
 
 export default router;
+``

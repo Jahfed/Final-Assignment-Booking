@@ -1,10 +1,10 @@
 import { PrismaClient } from "@prisma/client";
 
-const getBookingsByQuery = (propertyId, checkinDate, checkoutDate, numberOfGuests, totalPrice, bookingStatus) => {
+const getBookingsByQuery = (id, userId, propertyId, checkinDate, checkoutDate, numberOfGuests, totalPrice, bookingStatus) => {
     const prisma = new PrismaClient();
 
     return prisma.booking.findMany({
-        where: { propertyId, checkinDate, checkoutDate, numberOfGuests, totalPrice, bookingStatus }
+        where: { id, userId, propertyId, checkinDate, checkoutDate, numberOfGuests, totalPrice, bookingStatus }
     })
 }
 

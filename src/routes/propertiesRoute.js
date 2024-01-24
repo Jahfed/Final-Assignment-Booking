@@ -16,8 +16,8 @@ const router = new express.Router();
 
 
 router.get('/', async (req, res) => {
-    const { title, description, location, pricePerNight, bedroomCount, bathRoomCount, maxGuestCount, hostId, rating } = req.query;
-    const property = await getPropertiesByQuery(title, description, location, pricePerNight, bedroomCount, bathRoomCount, maxGuestCount, hostId, rating);
+    const { id, title, description, location, pricePerNight, bedroomCount, bathRoomCount, maxGuestCount, hostId, rating } = req.query;
+    const property = await getPropertiesByQuery(id, title, description, location, pricePerNight, bedroomCount, bathRoomCount, maxGuestCount, hostId, rating);
     res.status(200).json(property);
 })
 
@@ -42,7 +42,7 @@ router.put('/:id', authMiddleware, async (req, res, next) => {
         const { id } = req.params;
         const { title, description, location, pricePerNight, bedroomCount, bathRoomCount, maxGuestCount, hostId, rating } = req.body;
         const updatedProperty = await updateProperty(id, title, description, location, pricePerNight, bedroomCount, bathRoomCount, maxGuestCount, hostId, rating);
-        res.status(201).json(updatedProperty);
+        res.status(200).json(updatedProperty);
     } catch (error) {
         next(error);
     }
@@ -52,7 +52,7 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
     try {
         const { id } = req.params;
         const deletedProperty = await deleteProperty(id);
-        res.status(201).json(deletedProperty);
+        res.status(200).json(deletedProperty);
     } catch (error) {
         next(error);
     }

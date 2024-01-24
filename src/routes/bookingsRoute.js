@@ -14,8 +14,8 @@ import deleteBooking from "../services/bookings/deleteBooking.js";
 const router = new express.Router();
 
 router.get('/', async (req, res) => {
-    const { propertyId, checkinDate, checkoutDate, numberOfGuests, totalPrice, bookingStatus } = req.query;
-    const booking = await getBookingsByQuery(propertyId, checkinDate, checkoutDate, numberOfGuests, totalPrice, bookingStatus);
+    const { id, userId, propertyId, checkinDate, checkoutDate, numberOfGuests, totalPrice, bookingStatus } = req.query;
+    const booking = await getBookingsByQuery(id, userId, propertyId, checkinDate, checkoutDate, numberOfGuests, totalPrice, bookingStatus);
     res.status(200).json(booking);
 })
 

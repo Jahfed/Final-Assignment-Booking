@@ -5,7 +5,7 @@ const deleteUser = async (id) => {
     const prisma = new PrismaClient();
 
     const deletedUser = await prisma.user.deleteMany({
-        where: { id }
+        where: { id },
     })
 
     if (!deleteUser || deleteUser.count === 0) {
