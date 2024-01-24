@@ -19,7 +19,7 @@ const login = async (username, password) => {
         console.log(match);
 
         if (!match) {
-            return null;
+            return 'wrong credentials!';
         } else {
 
             try {

@@ -12,7 +12,7 @@ const getUsersByQuery = (name, email, phoneNumber, profilePicture) => {
             email: true,
             phoneNumber: true,
             profilePicture: true
-        },
+        }
 
     })
 }

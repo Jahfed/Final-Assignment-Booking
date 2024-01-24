@@ -5,7 +5,15 @@ const getHostsById = (id) => {
 
 
     return prisma.host.findMany({
-        where: { id }
+        where: { id },
+        select: {
+            id: true,
+            name: true,
+            email: true,
+            phoneNumber: true,
+            profilePicture: true,
+            aboutMe: true,
+        }
     })
 }
 
