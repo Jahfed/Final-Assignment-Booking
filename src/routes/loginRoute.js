@@ -6,7 +6,6 @@ const router = Router();
 
 router.post("/", async (req, res, next) => {
     const { username, password } = req.body;
-
     try {
         if (!username || !password) {
             res.status(401).json({ message: "Invalid credentials! Make sure you send the username and password" });
