@@ -28,7 +28,7 @@ async function main() {
 
     for (const host of hosts) {
         const unhashed = host.password;
-        const hashed = await bcrypt.hash(unhashed, 10).then(async function (hashed) { return hashed; });
+        const hashed = await bcrypt.hash(unhashed, 10);
 
         await prisma.host.upsert({
             where: { id: host.id },
@@ -47,7 +47,7 @@ async function main() {
 
     for (const user of users) {
         const unhashed = user.password;
-        const hashed = await bcrypt.hash(unhashed, 10).then(async function (hashed) { return hashed; });
+        const hashed = await bcrypt.hash(unhashed, 10);
 
         await prisma.user.upsert({
             where: { id: user.id },
