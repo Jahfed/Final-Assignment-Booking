@@ -50,13 +50,13 @@ model Property {
   bedroomCount  Int
   bathRoomCount Int
   maxGuestCount Int
-  hostId        String
+  hostId        String?
   rating        Int
   amenities     Amenity[]
   bookings      Booking[]
   reviews       Review[]
 
-  host Host @relation(fields: [hostId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  host Host? @relation(fields: [hostId], references: [id])
 
   @@index([hostId])
 }

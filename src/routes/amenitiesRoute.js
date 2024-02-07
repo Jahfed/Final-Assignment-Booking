@@ -47,7 +47,6 @@ router.post('/', authMiddleware, async (req, res) => {
 router.put('/:id', authMiddleware, async (req, res, next) => {
     try {
         const { id } = req.params;
-        console.log(id);
         const { name } = req.body;
         const updatedAmenity = await updateAmenity(id, name);
         res.status(200).json(updatedAmenity);
