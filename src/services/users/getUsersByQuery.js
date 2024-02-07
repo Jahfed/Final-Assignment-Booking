@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
-const getUsersByQuery = (id, username, name, email, phoneNumber, profilePicture) => {
+const getUsersByQuery = async (id, username, name, email, phoneNumber, profilePicture) => {
     const prisma = new PrismaClient();
 
     const getUserByQuery = prisma.user.findMany({

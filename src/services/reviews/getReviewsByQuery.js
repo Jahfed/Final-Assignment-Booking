@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 
 
-const getReviewsByQuery = (id, userId, propertyId, rating, comment) => {
+const getReviewsByQuery = async (id, userId, propertyId, rating, comment) => {
     const prisma = new PrismaClient();
 
     return prisma.review.findMany({

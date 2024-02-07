@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
-const getHostsByQuery = (id, name, email, phoneNumberGiven, profilePicture, aboutMe) => {
+const getHostsByQuery = async (id, name, email, phoneNumberGiven, profilePicture, aboutMe) => {
     const prisma = new PrismaClient();
 
     return prisma.host.findMany({

@@ -1,10 +1,10 @@
 
 import { PrismaClient } from "@prisma/client";
 
-const getUsersById = (id) => {
+const getUsersById = async (id) => {
     const prisma = new PrismaClient();
 
-    const userById = prisma.user.findMany({
+    const userById = await prisma.user.findMany({
         where: { id },
         select: {
             id: true,

@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
-const getBookingsByQuery = (id, userId, propertyId, checkinDate, checkoutDate, numberOfGuests, totalPrice, bookingStatus) => {
+const getBookingsByQuery = async (id, userId, propertyId, checkinDate, checkoutDate, numberOfGuests, totalPrice, bookingStatus) => {
     const prisma = new PrismaClient();
 
     return prisma.booking.findMany({

@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
-const getHostsById = (id) => {
+const getHostsById = async (id) => {
     const prisma = new PrismaClient();
 
 

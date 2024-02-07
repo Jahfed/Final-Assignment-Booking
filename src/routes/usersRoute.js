@@ -14,22 +14,34 @@ import deleteUser from "../services/users/deleteUser.js";
 const router = new express.Router();
 
 router.get('/', async (req, res) => {
-    const { id, username, name, email, phoneNumber, profilePicture } = req.query;
-    const user = await getUsersByQuery(id, username, name, email, phoneNumber, profilePicture);
-    res.status(200).json(user);
-})
+    try {
+        const { id, username, name, email, phoneNumber, profilePicture } = req.query;
+        const user = await getUsersByQuery(id, username, name, email, phoneNumber, profilePicture);
+        res.status(200).json(user);
+    } catch (error) {
+        next(error);
+    }
+}, notFoundErrorHandler)
 
 router.get('/:id', async (req, res) => {
-    const { id } = req.params;
-    const user = await getUsersById(id);
-    res.status(200).json(user);
-})
+    try {
+        const { id } = req.params;
+        const user = await getUsersById(id);
+        res.status(200).json(user);
+    } catch (error) {
+        next(error);
+    }
+}, notFoundErrorHandler)
 
 router.post('/', authMiddleware, async (req, res) => {
-    const { username, password, name, email, phoneNumber, profilePicture } = req.body;
-    const newUser = await createNewUser(username, password, name, email, phoneNumber, profilePicture);
-    res.status(201).json(newUser);
-})
+    try {
+        const { username, password, name, email, phoneNumber, profilePicture } = req.body;
+        const newUser = await createNewUser(username, password, name, email, phoneNumber, profilePicture);
+        res.status(201).json(newUser);
+    } catch (error) {
+        next(error);
+    }
+}, notFoundErrorHandler)
 
 router.put('/:id', authMiddleware, async (req, res, next) => {
     try {
@@ -45,17 +57,13 @@ router.put('/:id', authMiddleware, async (req, res, next) => {
 router.delete('/:id', authMiddleware, async (req, res, next) => {
     try {
         const { id } = req.params;
-        console.log(id);
         const deletedUser = await deleteUser(id);
         console.log(deletedUser);
         res.status(200).json(deletedUser);
     } catch (error) {
-        next(error);
+        res.status(500).json("something went wrong");
     }
 }, notFoundErrorHandler)
 
 
-
-
 export default router;
-``
