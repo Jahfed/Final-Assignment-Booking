@@ -61,7 +61,7 @@ router.delete('/:id', authMiddleware, async (req, res, next) => {
         console.log(deletedUser);
         res.status(200).json(deletedUser);
     } catch (error) {
-        res.status(500).json("something went wrong");
+        next(error);
     }
 }, notFoundErrorHandler)
 

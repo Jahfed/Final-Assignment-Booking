@@ -8,7 +8,7 @@ const createNewAmenity = async (name) => {
 
     //proceed when okay
     const prisma = new PrismaClient();
-    console.log(name);
+
     const response = await prisma.amenity.create({
         data: { name }
     });
