@@ -4,7 +4,7 @@ import { PrismaClient } from "@prisma/client";
 const getUsersById = (id) => {
     const prisma = new PrismaClient();
 
-    return prisma.user.findMany({
+    const userById = prisma.user.findMany({
         where: { id },
         select: {
             id: true,
@@ -14,6 +14,10 @@ const getUsersById = (id) => {
             profilePicture: true
         }
     })
+
+
+
+    return userById;
 }
 
 export default getUsersById;

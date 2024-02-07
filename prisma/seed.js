@@ -32,8 +32,8 @@ async function main() {
 
         await prisma.host.upsert({
             where: { id: host.id },
-            update: { password: hashed },
-            create: { ...host }
+            update: {},
+            create: { ...host, password: hashed }
         })
     }
 
@@ -51,8 +51,8 @@ async function main() {
 
         await prisma.user.upsert({
             where: { id: user.id },
-            update: { password: hashed },
-            create: { ...user }
+            update: {},
+            create: { ...user, password: hashed }
         });
     }
 

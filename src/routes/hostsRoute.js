@@ -1,7 +1,7 @@
 import express from "express";
 
 //middleware
-import authMiddleware from "../middleware/auth0.js";
+import authMiddleware from "../middleware/auth.js";
 import notFoundErrorHandler from '../middleware/notFoundErrorHandler.js';
 
 //services import
