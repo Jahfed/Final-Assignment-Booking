@@ -2,7 +2,8 @@
 import * as Sentry from "@sentry/node";
 import 'dotenv/config';
 import express from "express";
-
+import { fileURLToPath } from "url";
+import { dirname, join } from "path";
 
 //importing middleware
 import log from "./middleware/logMiddleware.js";
@@ -18,10 +19,9 @@ import reviewsRouter from "./routes/reviewsRoute.js";
 import usersRouter from "./routes/usersRoute.js";
 import loginRouter from "./routes/loginRoute.js";
 
-
-
 //Start the express app
 const app = express();
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 //Sentry setup
 Sentry.init({
@@ -57,8 +57,9 @@ app.use("/users", usersRouter);
 app.use('/login', loginRouter);
 
 app.get("/", (req, res) => {
-  res.send("Hello world!");
+  res.sendFile(join(__dirname, './docs/index.html'));
 });
+
 
 //Sentry after the controllers
 app.use(Sentry.Handlers.errorHandler());

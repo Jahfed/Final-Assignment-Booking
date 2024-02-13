@@ -1,5 +1,5 @@
 const notFoundErrorHandler = (err, req, res, next) => {
-    if (req.body = "") { res.body = "PROBLEMS!"; console.log("no body information was found...") }
+    if (req.body === "") { res.body === "PROBLEMS!"; console.log("no body information was found...") }
 
     if (err.name === 'NotFoundError') {
         return res.status(404).json({ message: err.message });
